@@ -1,59 +1,33 @@
-body
-{
-  background: url('https://wallpapercave.com/wp/wp4452726.png');
-}
-span
-{
-  font-size: 30px;
-}
-h1{
-  font-size: 60px;
-  font-family:'Times New Roman', Times, serif;
-  color: white;
-}
-h3
-{
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #20B2AA;
-  font-size: 16px;
-}
-#p
-{
-  font-size: 18px;
-  color: white;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-#container
-{
-  background-color: white;
-  border-radius: 20px;
-  width: 320px;
-  padding: 10px;
-  height: 120px;
-}
-#output
-{
-  color: white;
-}
-#camera , #result
-{
-  border: 2px dashed white;
-  width: 350px;
-  height: 300px; 
-}
-.object_name
-{
-  font-size: 40px;
-}
-.gesture_icon
-{
-  font-size:48px;
-}
-label
-{
-  font-size: 14px;
-  color: #62b33a;
-  padding: 6px;
-  border-radius: 10px;
-  background-color: white;
-}
+.body_backgorund {
+    background-image: url("colorpencilbac.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+  body{
+    cursor: pointer;
+  }
+  h1
+  {
+      color: red; 
+      font-size: 40px;
+  }
+  #myCanvas
+  {
+      border-width:10px;
+      background-color: white; 
+      border-style:ridge;
+  }
+
+  button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 42px;
+    font-size: 16px;
+  }
+
+  input
+  {
+    margin-right: 20px;
+  }
+  

@@ -1,75 +1,97 @@
-output = "";
+var mouseEvent = "empty";
+var last_position_of_x, last_position_of_y;
 
-Webcam.set({
-    width: 350,
-    height: 300,
-    image_format : 'png',
-    png_quality: 90
-});
+    canvas = document.getElementById('myCanvas');
+    ctx = canvas.getContext("2d");
+    
+    color = "black";
+    width_of_line = 2;
 
-camera = document.getElementById("camera");
+    var width = screen.width;
+    new_width = screen.width - 70;
+    new_height = screen.height - 300;
 
-Webcam.attach ('#camera');
-
-function take_snapshot()
-{
-    Webcam.snap(function(data_uri) {
-        document.getElementById("result").innerHTML = '<img id="captured_image" src="' + data_uri + '"/>'
-    });
-}
-
-console.log('ml5 version:', ml5.version);
-
-classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/-xavYCcdn/model.json', modelLoaded); 
-
-function modelLoaded() {
-    console.log('Model Loaded')
-}
-
-function check(){
-    img = document.getElementById('captured_image');
-    classifier.classify(img, gotResult);
-}
-
-function gotResult(error, results) {
-    if (error) {
-        console.error(error);
-    } else {
-        console.log(results);
-        document.getElementById("output").innerHTML = results[0].label;
-        result = results[0].label;
-        speak();
-        if(results[0].label == "excellent")
-        {
-            document.getElementById("output").innerHTML = "Excellent!";
-        }
-        if(results[0].label == "victory")
-        {
-            document.getElementById("output").innerHTML = "Victory!!";
-        }
-        if(results[0].label == "what's up")
-        {
-            document.getElementById("output").innerHTML = "What's up?";
-        }
-        if(result[0].label == "good luck")
-        {
-            document.getElementById("output"),innerHTML = "Good luck!";
-        }
-        if(result[0].label == "beautiful")
-        {
-            document.getElementById("output").innerHTML = "Beautifully done";
-        }
-        if(result[0].label == "good job")
-        {
-            document.getElementById("output").innerHTML = "Good job! Keep it up";
-        }
+    if(width < 992)
+    {
+        documentgetElementById("myCanvas").width = new_width;
+        document.getElementById("myCanvas").height = new_height;
+        document.body.style.overflow = "hidden";
     }
+
+canvas.addEventListener("touchstart", my_touchstart);
+
+    function my_touchstart(e)
+{
+    console.log("my_touchstart");
+
+    last_position_of_x = e.touches[0].clientX
+    last_position_of_y = e.touches[0].clientY
+    console.log("my_touchstart");
 }
 
-function speak(){
-    var synth = window.SpeechSynthesis;
-    speak_data_1 = "The first prediction is " + prediction_1;
-    speak_data_2 = "And the second prediction is " + prediction_2;
-    var utterThis = new SpeechSynthesisUtterance(speak_data_1 + speak_data_2);
-    synth.speak(utterTHis);
+canvas.addEventListener("touchmove", my_touchmove);
+
+function my_touchmove(e)
+{
+    current_position_of_touch_x = e.touches[0].clientX - canvas.offsetLeft;
+    current_position_of_touch_y = e.touches[0].clientY - canvas.offsetTop;
+
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width_of_line;
+    ctx.moveTo(last_position_of_x, last_position_of_y);
+    ctx.lineTo(current_position_of_touch_x, current_position_of_touch_y);
+    ctx.stroke();
+
+    last_position_of_x = current_position_of_touch_x;
+    last_position_of_y = current_position_of_touch_y;
 }
+
+    canvas.addEventListener("mousedown", my_mousedown);
+    
+    function my_mousedown(e)
+    {
+        //Addictonal Activity start
+        color = document.getElementById("color").value;
+        width_of_line = document.getElementById("width_of_line").value;
+        //Addictonal Activity ends
+
+        mouseEvent = "mouseDown";
+    }
+
+    canvas.addEventListener("mouseup", my_mouseup);
+    function my_mouseup(e)
+    {
+        mouseEvent = "mouseUP";
+    }
+
+    canvas.addEventListener("mouseleave", my_mouseleave);
+    function my_mouseleave(e)
+    {
+        mouseEvent = "mouseleave";
+    }
+
+    canvas.addEventListener("mousemove", my_mousemove);
+    function my_mousemove(e)
+    {
+
+         current_position_of_mouse_x = e.clientX - canvas.offsetLeft;
+         current_position_of_mouse_y = e.clientY - canvas.offsetTop;
+
+        if (mouseEvent == "mouseDown") {
+        ctx.beginPath();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = width_of_line;
+        ctx.moveTo(last_position_of_x, last_position_of_y);
+        ctx.lineTo(current_position_of_mouse_x, current_position_of_mouse_y);
+        ctx.stroke();
+        }
+
+        last_position_of_x = current_position_of_mouse_x; 
+        last_position_of_y = current_position_of_mouse_y;
+    }
+
+    function clearArea() 
+    { 
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); 
+    }

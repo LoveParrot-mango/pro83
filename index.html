@@ -1,64 +1,34 @@
+<!DOCTYPE html>
+
 <html>
-  <head>
-    <title>Emotion To Emoji</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<head>  
+<link rel="stylesheet" type="text/css" href="style.css">
 
-    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
+</head>
+<body class="body_backgorund">
 
-<body>
-    <center>
-        <h1>Lapin Gestures</h1>
-        
+<div align="center">
+<h1>Paint</h1>
 
-        <div id="container" class="container">
-          <h3>Know your gestures!</h3>
-            <span>&#128076;</span>
-            <span>&#128077;</span>
-            <span>&#9996;</span>
-            <span>&#9994;</span>
-            <span>&#128079;</span>
-            <span>&#129304;</span>
-        </div>
-        <br>
-        <br>
-        <Br>
-        <p id="p">Take a selfie of any of the gestures above to know about it's secret message</p>
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+        <br><br >
 
-        <br>
-        <br>
+<span> Color - </span>
+<input type="text" id="color">
+<br>
+<br>
+<span>Width of the line - </span>
+<input type="text" id="width_of_line">
+<br>
+<br>
+<button onclick="clearArea();">Clear Area</button>
 
-        <div class="col-md-4 col-sm-12 col-xs-12">
-            <label>Webcam View - </label>
-            <div id="camera"></div>
-            <br><br>
-            <button onclick="take_snapshot();" class="btn btn-primary">Capture Image</button>
-          </div>
-    
-          <div class="col-md-4 col-sm-12 col-xs-12">
-            <label>Prediction - </label>
-            <p class="object_name" id="output"></p>
-          </div>
-    
-          <div class="col-md-4 col-sm-12 col-xs-12">
-            <label>Snapshot - </label>
-            <div id="result"></div>
-            <br><br>
-            <button onclick="check();" class="btn btn-success">Predict Hand Gesture</button>
-           </div>
-
-           <br>
-           <br>
-           <br>
-           
-    </center>
-
-    <script src="main.js"></script>
+    </div>
+<script src="main.js"></script>
 </body>
 </html>
